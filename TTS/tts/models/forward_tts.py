@@ -398,7 +398,7 @@ class ForwardTTS(BaseTTS):
         """
         if hasattr(self, "emb_g"):
             g = g.type(torch.LongTensor)
-            g = self.emb_g(g.device("cuda:0") if torch.cuda.is_available() else g)  # [B, C, 1]
+            g = self.emb_g(g.to("cuda:0") if torch.cuda.is_available() else g)  # [B, C, 1]
         if g is not None:
             g = g.unsqueeze(-1)
         # [B, T, C]
